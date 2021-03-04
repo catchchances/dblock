@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kkdz.dblock.mapper.LockTestMapper">
+    <resultMap id="BaseResultMap" type="com.kkdz.dblock.domain.LockTest">
+        <result column="biz_id" jdbcType="VARCHAR" property="bizId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+    </resultMap>
+    
+    <sql id= "Base_Column_list">
+        biz_id, name, sex, age
+    </sql>
+
+    <insert id="insert" parameterType="com.kkdz.dblock.domain.LockTest">
+        insert into 
+        lock_test
+        (
+            <include refid="Base_Column_list"></include>
+        )
+        values
+            (
+                #{bizId},
+                #{name},
+                #{sex},
+                #{age}
+            )
+    </insert>
+
+
+    <update id="update" parameterType="com.kkdz.dblock.domain.LockTest">
+        update  
+            lock_test
+        set 
+            name = #{name},
+            sex = #{sex},
+            age = #{age}
+        where biz_id = #{bizId}
+    </update>
+
+
+</mapper>
